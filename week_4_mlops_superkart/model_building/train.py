@@ -89,8 +89,13 @@ y_train_pred = best_model.predict(Xtrain)
 y_test_pred = best_model.predict(Xtest)
 
 # Evaluation metrics
-train_rmse = mean_squared_error(ytrain, y_train_pred, squared=False)
-test_rmse  = mean_squared_error(ytest, y_test_pred, squared=False)
+
+train_mse = mean_squared_error(ytrain, y_train_pred)
+test_mse  = mean_squared_error(ytest, y_test_pred)
+
+train_rmse = np.sqrt(train_mse)
+test_rmse  = np.sqrt(test_mse)
+
 test_mae   = mean_absolute_error(ytest, y_test_pred)
 test_r2    = r2_score(ytest, y_test_pred)
 
