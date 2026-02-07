@@ -5,7 +5,7 @@ import joblib
 
 # Load model from Hugging Face Model Hub
 model_path = hf_hub_download(
-    repo_id="<your-hf-username>/superkart-sales-model",
+    repo_id="sandeep466/superkart-sales-model",
     filename="best_superkart_sales_model_v1.joblib"
 )
 

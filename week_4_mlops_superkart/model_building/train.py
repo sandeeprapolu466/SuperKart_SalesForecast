@@ -23,10 +23,10 @@ from huggingface_hub.utils import RepositoryNotFoundError
 api = HfApi(token=os.getenv("HF_TOKEN"))
 
 # Load training and testing data from Hugging Face
-Xtrain_path = "hf://datasets/<your-hf-username>/superkart-sales-dataset/Xtrain.csv"
-Xtest_path  = "hf://datasets/<your-hf-username>/superkart-sales-dataset/Xtest.csv"
-ytrain_path = "hf://datasets/<your-hf-username>/superkart-sales-dataset/ytrain.csv"
-ytest_path  = "hf://datasets/<your-hf-username>/superkart-sales-dataset/ytest.csv"
+Xtrain_path = "hf://datasets/sandeep466/superkart-sales-dataset/Xtrain.csv"
+Xtest_path  = "hf://datasets/sandeep466/superkart-sales-dataset/Xtest.csv"
+ytrain_path = "hf://datasets/sandeep466/superkart-sales-dataset/ytrain.csv"
+ytest_path  = "hf://datasets/sandeep466/superkart-sales-dataset/ytest.csv"
 
 Xtrain = pd.read_csv(Xtrain_path)
 Xtest  = pd.read_csv(Xtest_path)

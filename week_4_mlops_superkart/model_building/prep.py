@@ -13,7 +13,7 @@ from huggingface_hub import HfApi
 api = HfApi(token=os.getenv("HF_TOKEN"))
 
 # Loading dataset directly from Hugging Face
-DATASET_PATH = "hf://datasets/sandeep466/superkart-sales-dataset/superkart_sales.csv"
+DATASET_PATH = "hf://datasets/sandeep466/superkart-sales-dataset/SuperKart.csv"
 df = pd.read_csv(DATASET_PATH)
 print("Dataset loaded successfully.")
 
