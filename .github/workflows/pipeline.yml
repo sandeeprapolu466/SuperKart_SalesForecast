@@ -1,0 +1,66 @@
+name: Week 4 SuperKart MLOps Pipeline
+
+on:
+  push:
+    branches:
+      - main   # Automatically trigger on push to main branch
+
+jobs:
+
+  register-dataset:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: pip install -r week_4_mlops_superkart/requirements.txt
+
+      - name: Upload Dataset to Hugging Face Hub
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: python week_4_mlops_superkart/model_building/data_register.py
+
+
+  data-prep:
+    needs: register-dataset
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: pip install -r week_4_mlops_superkart/requirements.txt
+
+      - name: Run Data Preparation
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: python week_4_mlops_superkart/model_building/prep.py
+
+
+  model-training:
+    needs: data-prep
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: pip install -r week_4_mlops_superkart/requirements.txt
+
+      - name: Train and Register Model
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: python week_4_mlops_superkart/model_building/train.py
+
+
+  deploy-hosting:
+    needs: [register-dataset, data-prep, model-training]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: pip install -r week_4_mlops_superkart/requirements.txt
+
+      - name: Push Deployment Files to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: python week_4_mlops_superkart/hosting/hosting.py
