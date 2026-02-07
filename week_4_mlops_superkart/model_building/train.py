@@ -1,6 +1,8 @@
 # for data manipulation
 import pandas as pd
 import os
+import numpy as np
+
 
 # for preprocessing and pipeline creation
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
